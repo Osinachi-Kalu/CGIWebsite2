@@ -1,0 +1,239 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-deep-black: #000000;
+  --color-pure-white: #FFFFFF;
+  --color-champagne-gold: #D4AF37;
+  --color-platinum-silver: #E5E4E2;
+  --color-charcoal-gray: #36454F;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-deep-black);
+  color: var(--color-pure-white);
+  overflow-x: hidden;
+}
+
+/* Hide hydration warnings */
+[data-hydration-error] {
+  display: none !important;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-deep-black);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-champagne-gold);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #c09020;
+}
+
+/* Container */
+.container-custom {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* Gold accent text */
+.text-gold {
+  color: var(--color-champagne-gold);
+}
+
+/* Gold gradient */
+.gold-gradient {
+  background: linear-gradient(135deg, var(--color-champagne-gold) 0%, #f4d03f 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Button styles */
+.btn-primary {
+  background-color: var(--color-champagne-gold);
+  color: var(--color-deep-black);
+  padding: 0.875rem 2rem;
+  border-radius: 0.375rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: 2px solid var(--color-champagne-gold);
+}
+
+.btn-primary:hover {
+  background-color: transparent;
+  color: var(--color-champagne-gold);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--color-pure-white);
+  padding: 0.875rem 2rem;
+  border-radius: 0.375rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: 2px solid var(--color-pure-white);
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-pure-white);
+  color: var(--color-deep-black);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(255, 255, 255, 0.2);
+}
+
+/* Card styles */
+.card {
+  background: rgba(54, 69, 79, 0.3);
+  border-radius: 0.5rem;
+  padding: 2rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(212, 175, 55, 0.2);
+  background: rgba(54, 69, 79, 0.4);
+}
+
+/* Section spacing */
+.section {
+  padding: 5rem 0;
+}
+
+.section:nth-child(even) {
+  background: rgba(54, 69, 79, 0.1);
+}
+
+/* Form styles */
+input, textarea, select {
+  background: rgba(54, 69, 79, 0.5);
+  border: 1px solid rgba(229, 228, 226, 0.2);
+  color: var(--color-pure-white);
+  padding: 0.875rem 1rem;
+  border-radius: 0.375rem;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: var(--color-champagne-gold);
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+}
+
+input::placeholder, textarea::placeholder {
+  color: rgba(229, 228, 226, 0.5);
+}
+
+label {
+  color: var(--color-platinum-silver);
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+/* Animation classes */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes countUp {
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Parallax effect */
+.parallax {
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+@media (max-width: 768px) {
+  .parallax {
+    background-attachment: scroll;
+  }
+  
+  .section {
+    padding: 3rem 0;
+  }
+}
+
+/* Blog Post Content Styles */
+.blog-post-content {
+  color: var(--color-platinum-silver);
+}
+
+.blog-post-content h2 {
+  color: var(--color-champagne-gold);
+  font-size: 1.875rem;
+  font-weight: 700;
+  margin-top: 3rem;
+  margin-bottom: 1.5rem;
+}
+
+.blog-post-content h3 {
+  color: var(--color-pure-white);
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.blog-post-content p {
+  margin-bottom: 1.5rem;
+  line-height: 1.8;
+}
+
+.blog-post-content ul {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding-left: 1.5rem;
+}
+
+.blog-post-content li {
+  margin-bottom: 0.5rem;
+}

@@ -1,0 +1,102 @@
+generator client {
+    provider = "prisma-client-js"
+    binaryTargets = ["native", "linux-musl-arm64-openssl-3.0.x"]
+    output = "/home/ubuntu/cgi_website/nextjs_space/node_modules/.prisma/client"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+// Contact inquiries from the main contact form
+model ContactInquiry {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  phone     String?
+  subject   String
+  message   String   @db.Text
+  status    String   @default("new") // new, read, responded
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Bootcamp enrollments ($97 program)
+model BootcampEnrollment {
+  id               String   @id @default(cuid())
+  name             String
+  email            String
+  phone            String?
+  tradingExperience String?
+  message          String?  @db.Text
+  status           String   @default("pending") // pending, approved, completed
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+// One-on-one program applications ($10,000 program)
+model OneOnOneApplication {
+  id                String   @id @default(cuid())
+  name              String
+  email             String
+  phone             String?
+  tradingExperience String?
+  currentCapital    String?
+  goals             String?  @db.Text
+  message           String?  @db.Text
+  status            String   @default("pending") // pending, reviewing, approved, rejected
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+}
+
+// Fund management inquiries ($100k minimum)
+model FundManagementInquiry {
+  id             String   @id @default(cuid())
+  name           String
+  email          String
+  phone          String?
+  capitalAmount  String?
+  investmentGoals String? @db.Text
+  message        String?  @db.Text
+  status         String   @default("pending") // pending, qualified, disqualified, onboarded
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+// Newsletter subscriptions
+model NewsletterSubscription {
+  id         String   @id @default(cuid())
+  email      String   @unique
+  name       String?
+  subscribed Boolean  @default(true)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+// Survey responses
+model SurveyResponse {
+  id                String   @id @default(cuid())
+  email             String?
+  tradingExperience String?  // beginner, intermediate, advanced
+  primaryGoal       String?  // education, account_management, both
+  capitalRange      String?  // under_10k, 10k_50k, 50k_100k, over_100k
+  interests         String?  @db.Text // JSON array of interests
+  createdAt         DateTime @default(now())
+}
+
+// Blog posts
+model BlogPost {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  excerpt     String   @db.Text
+  content     String   @db.Text
+  imageUrl    String?
+  category    String?  // forex, risk_management, psychology, strategy
+  tags        String?  @db.Text // JSON array of tags
+  published   Boolean  @default(false)
+  publishedAt DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
